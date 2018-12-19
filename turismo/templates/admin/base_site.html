@@ -1,0 +1,26 @@
+{% extends "admin/index.html" %}
+{% load staticfiles %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.png' %}"/>
+    <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.min.css" %}'/>
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href='{% static "css/styles-admin.css" %}'/>
+
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script src='{% static "js/jquery-3.3.1.min.js" %}'></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src='{% static "js/script.js" %}'></script>
+{% endblock %}
+
+{% block branding %}
+    {{ block.super }}
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

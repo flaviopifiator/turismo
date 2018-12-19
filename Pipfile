@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django-extensions = "*"
+django-jet = "*"
+ipython = "*"
+"psycopg2" = "*"
+"psycopg2-binary" = "*"
+django-progressive-web-app = "*"
+"django-recaptcha2" = "*"
+"django-bootstrap4" = "*"
+django-leaflet = "*"
+django-map-widgets = {git = "https://github.com/erdem/django-map-widgets.git", editable = true}
+django = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"

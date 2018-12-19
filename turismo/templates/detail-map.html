@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block js %}
+    <script>
+    x = "{{object.ubicacion.x}}".replace(/,/g, '.')
+    y = "{{object.ubicacion.y}}".replace(/,/g, '.')
+    // initialize the map
+    var map = L.map('map').setView([y, x], 16);
+    // load a tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+      }).addTo(map);
+    L.marker([y, x]).addTo(map)
+        .bindPopup('{{object.nombre}}')
+        .openPopup();
+    </script>
+{% endblock %}

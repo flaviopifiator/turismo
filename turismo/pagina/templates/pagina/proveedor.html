@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap4 %}
+
+{% block header %}
+<header>
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar ">
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand waves-effect" href="/">
+                <strong class="blue-text">Mejoremos y Punto</strong>
+            </a>
+
+            <!-- Collapse -->
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
+                <!-- Left -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="false">FeedBack</a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="{% url 'home:feedback-proveedores'%}">FeedBack Proveedores</a>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="false">Usuario Proveedor</a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="#">Perfil</a>
+                            <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+</header>
+<!--Main Navigation-->
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+
+         <!-- Card content -->
+          <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="card-title">Puntos Para Canjear</h4>
+                    <h4><span class="badge badge-success">23423</span></h4>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="card-title">Historial de Puntos</h4>
+                    <h4><span class="badge badge-primary">2148732</span></h4>
+                </div>
+            </div>
+          </div>
+
+        </div>
+        <br>
+        <div class="card">
+
+         <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title">Canjear Puntos</h4>
+
+              <select class="mdb-select md-form">
+                  <option value="" disabled selected>Seleccionar Beneficio</option>
+                  {% for b in beneficios %}
+                    <option value="{{b.nombre}}">{{b.nombre}}</option>
+                  {% endfor %}
+                </select>
+
+            <a href="#" class="btn btn-primary">Canjear</a>
+          </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}
+<script>
+        $(document).ready(function() {
+         $('.mdb-select').materialSelect();
+        });
+</script>
+
+{% endblock %}

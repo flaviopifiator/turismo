@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <p class="h3 my-4">Proveedores de Servicios Turísticos</p>
+        <div class="row justify-content-around">
+            {% for proveedor in proveedores %}
+
+                <div class="card col col-12 col-md-3">
+                    <img class="card-img-top" src="{% static 'img/turismo.jpg' %}" alt="{{proveedor.nombre}}">
+
+                    <!-- Card content -->
+                    <div class="card-body">
+                        <!-- Title -->
+                        <h4 class="card-title"><a>{{proveedor.nombre}}</a></h4>
+                        <!-- Text -->
+
+                        {% for s in proveedor.servicio.all %}
+                            <span class="badge badge-dark">{{s}}</span>
+                        {% endfor %}
+                        <br>
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+        <br>
+        <div class="card col-md-12">
+            <div class="card-header font-weight-bold">
+                <span><i class="fa fa-map-marker"></i> Mapa de Proveedores Turísticos</span>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body" id="map" style="height: 30%;"></div>
+        </div>
+    </div>
+</div>
+     
+{% endblock %}
+
+{% block js %}
+    <script>
+    var locations = [
+		["LOCATION_2",-28.464006, -65.801610],
+		["LOCATION_3",-28.460989, -65.799585],
+		["LOCATION_4",-28.471579, -65.792626],
+		["LOCATION_4",-28.472817, -65.788983],
+		];
+
+        var map = L.map('map').setView([-28.462761, -65.797925], 13);
+        mapLink =
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; ' + mapLink + ' Contributors',
+            maxZoom: 18,
+            }).addTo(map);
+
+		for (var i = 0; i < locations.length; i++) {
+			marker = new L.marker([locations[i][1],locations[i][2]])
+				.bindPopup(locations[i][0])
+				.addTo(map);
+		}
+    </script>
+{% endblock %}
